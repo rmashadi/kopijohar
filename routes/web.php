@@ -1,60 +1,50 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\Auth\AdminController as AdminAuth;
+use App\Http\Controllers\Auth\UserController as UserAuth;
+use App\Http\Controllers\LandingController;
 
 /** Website Utama **/
-Route::get('/', function () {
-    return view('customer.layouts.app');
-});
+Route::get('/', [LandingController::class, 'index']);
 
 /** Route Halaman Tentang **/
 Route::get('/maps', function () {
-    return view('customer.about.maps');
+    return view('user.about.maps');
 });
 
 Route::get('/contact', function () {
-    return view('customer.about.contact');
+    return view('user.about.contact');
 });
 
 /** Route Halaman Produk **/
 Route::get('/coffee', function () {
-    return view('customer.produk.coffee');
+    return view('user.produk.coffee');
 });
 
 Route::get('/foods', function () {
-    return view('customer.produk.food');
+    return view('user.produk.food');
 });
 
 Route::get('/cigars', function () {
-    return view('customer.produk.cigar');
+    return view('user.produk.cigar');
 });
 
 /** Route Halaman Auth User Customers **/
 Route::get('/login', function () {
-    return view('customer.auth.login');
+    return view('user.auth.login');
 });
 
 Route::get('/register', function () {
-    return view('customer.auth.register');
+    return view('user.auth.register');
 });
 
 Route::get('/forgot-password', function () {
-    return view('customer.auth.forgot-password');
+    return view('user.auth.forgot-password');
 });
 
 Route::get('/dashboard', function () {
-    return view('customer.userDashboard');
+    return view('user.userDashboard');
 });
 
 
@@ -67,28 +57,22 @@ Route::get('/adm/dashboard', function () {
     return view('admin.dashboard');
 });
 
-/**
-//Routing Auth Admin and Owner Page
-Route::get('/adm/login', [AdminController::class, 'login'])->name('login');
-Route::post('/authenticate', [AdminController::class, 'authenticate'])->name('authenticate');
-Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
+Route::name('auth.')->prefix('auth')->group(function () {
+    Route::get('/admin', [AdminAuth::class, 'login'])->name('admin');
+    Route::get('/user', [UserAuth::class, 'login'])->name('user');
 
-//Dashboard Page
-Route::middleware(['auth:web,admin'])->get('/adm/dashboard', function() {
-    return view('admin.dashboard');
- });
+    Route::name('login.')->prefix('login')->group(function () {
+        Route::post('/admin', [AdminAuth::class, 'authenticate'])->name('admin');
+        Route::post('/user', [UserAuth::class, 'authenticate'])->name('user');
+    });
 
-Route::prefix('admin')->name('admin')->group(function () {
-    Route::get('//login', [AdminController::class, 'login'])->name('login');
-    Route::post('/authenticate', [AdminController::class, 'authenticate'])->name('authenticate');
-    Route::middleware('auth:admin')->get('/logout', [AdminController::class, 'logout'])->name('logout');
+    Route::name('logout.')->prefix('logout')->group(function () {
+        Route::post('/admin', [AdminAuth::class, 'logout'])->name('admin');
+        Route::post('/user', [UserAuth::class, 'logout'])->name('user');
+    });
 });
 
- //Routing Auth Users Customer page
-Route::prefix('users')->name('user')->group(function(){
-    Route::get('/login', [CustomerController::class, 'login'])->name('login');
-    Route::post('/authenticate', [CustomerController::class, 'authenticate'])->name('authenticate');
-    Route::get('/register', [CustomerController::class, 'register'])->name('register');
-    Route::get('/forgot-password', [CustomerController::class, 'forgot-password'])->name('forgot-password');
+Route::name('register.')->prefix('register')->group(function () {
+    Route::get('/user', [UserAuth::class, 'register'])->name('user.page');
+    Route::post('/user', [UserAuth::class, 'create'])->name('user.create');
 });
-**/

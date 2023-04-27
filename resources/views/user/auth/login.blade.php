@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page Admin - Kopi Johar</title>
+    <title>Login Page Pengguna - Kopi Johar</title>
     <link rel="stylesheet" href={{ URL::asset('dist/assets/css/main/app.css') }}>
     <link rel="stylesheet" href={{ URL::asset('dist/assets/css/pages/auth.css') }}>
     <link rel="shortcut icon" href={{ URL::asset('dist/assets/images/logo/favicon.svg') }} type="image/x-icon">
@@ -21,9 +21,16 @@
                         <a href="{{ url('/') }}"><img src={{ URL::asset('dist/assets/images/logo/logo.svg') }}
                                 alt="Logo"></a>
                     </div>
-                    <h1 class="auth-title text-center">Login Admin</h1>
 
-                    <form action="{{ route('auth.login.admin') }}" method="post">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
+                    <h1 class="auth-title text-center">Login Pengguna</h1>
+
+                    <form action="{{ route('auth.login.user') }}" method="post">
                         @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input name="email" type="text" class="form-control form-control-xl"
@@ -41,6 +48,12 @@
                         </div>
                         <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Masuk</button>
                     </form>
+                    <div class="text-center mt-5 text-lg fs-4">
+                        <p class="text-gray-600">Belum Punya Akun...? <a href="{{ url('/register') }}"
+                                class="font-bold">Daftar
+                            </a>.</p>
+                        <p><a class="font-bold" href="{{ url('/forgot-password') }}">Lupa Password?</a>.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-7 d-none d-lg-block">

@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
     public function login(Request $request)
     {
-        return view('admin.auth.login');
+        return view('user.auth.login');
     }
 
     public function authenticate(Request $request)
@@ -20,10 +22,10 @@ class AdminController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::guard('admin')->attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/admin');
+            return redirect()->intended('/user');
         }
 
         return back()->withErrors([
@@ -40,5 +42,24 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function create(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|unique:users',
+            'email' => 'required|unique:users',
+            'password' => 'required',
+        ]);
+
+        $newData = [
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ];
+
+        User::create($newData);
+
+        return redirect()->route('auth.user')->with(['success' => 'Data berhasil dibuat']);
     }
 }

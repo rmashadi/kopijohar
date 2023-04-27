@@ -3,14 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Foundation\Auth\Admin as Authenticate;
+use Illuminate\Foundation\Auth\User as Model;
 
 class Admin extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    protected $guarded = ['id'];
 
     protected $table = 'admins';
 
@@ -20,6 +21,7 @@ class Admin extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'username',
         'email',
         'password',
     ];
@@ -42,4 +44,9 @@ class Admin extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 }
