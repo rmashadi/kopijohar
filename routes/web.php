@@ -59,7 +59,7 @@ Route::get('/adm/dashboard', function () {
 
 Route::name('auth.')->prefix('auth')->group(function () {
     Route::get('/admin', [AdminAuth::class, 'login'])->name('admin');
-    Route::get('/user', [UserAuth::class, 'login'])->name('user');
+    Route::get('/dashboard', [UserAuth::class, 'login'])->name('dashboard');
 
     Route::name('login.')->prefix('login')->group(function () {
         Route::post('/admin', [AdminAuth::class, 'authenticate'])->name('admin');
