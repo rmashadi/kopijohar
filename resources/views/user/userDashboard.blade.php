@@ -39,7 +39,10 @@
                                   <li><a class="dropdown-item" href="#">Checkout</a></li>
                                   <li><a class="dropdown-item" href="#">Settings</a></li>
                                   <li><hr class="dropdown-divider"></li>
-                                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                                  <form action="{{ route('auth.logout.user') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                  </form>
                                 </ul>
                             </div>
 
