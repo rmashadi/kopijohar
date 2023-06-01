@@ -36,13 +36,6 @@
                                     class='submenu-link'>Makanan</a>
 
                             </li>
-                        
-                            <li
-                                class="submenu-item  ">
-                                <a href="{{url('/cigars')}}"
-                                    class='submenu-link'>Cerutu</a>
-
-                            </li>
                             
                         </ul>
                         

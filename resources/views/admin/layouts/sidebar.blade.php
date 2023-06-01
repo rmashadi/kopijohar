@@ -31,9 +31,6 @@
                 <li class="submenu-item ">
                     <a href="#">Makanan</a>
                 </li>
-                <li class="submenu-item ">
-                    <a href="#">Cigar</a>
-                </li>
             </ul>
         </li>
         

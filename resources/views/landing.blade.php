@@ -5,7 +5,7 @@
         <section class="row">
             <div class="col-12 col-lg-12">
                 <div class="row">
-                    <div class="col-xl-4 col-md-6 col-sm-12">
+                    <div class="col-xl-6 col-md-4 col-sm-12">
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
@@ -26,7 +26,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-md-6 col-sm-12">
+                    <div class="col-xl-6 col-md-4 col-sm-12">
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
@@ -43,24 +43,6 @@
                                     Semua makanan kami dibuat dengan bahan-bahan berkualitas dan diproses
                                     dengan higienis, sehingga Anda bisa menikmati hidangan yang lezat dan
                                     sehat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 col-sm-12">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <h4 class="card-title text-center">Menu Tentang Cigars</h4>
-                                </div>
-                                <img class="img-fluid w-100" src={{ URL::asset('dist/assets/images/samples/banana.jpg') }}
-                                    alt="Card image cap">
-                            </div>
-                            <div class="card-footer">
-                                <p class="card-text">
-                                    <b>Kedai Kopi Johar</b> juga menyediakan menu Cigars (Cerutu) dengan
-                                    berbagai macam merk dan jenis serta harga yang terjangkau,
-                                    Untuk menemani sepanjang harimu dengan ngopi di <b>Kedai Kopi Johar</b>.
                                 </p>
                             </div>
                         </div>
