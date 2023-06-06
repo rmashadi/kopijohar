@@ -58,7 +58,7 @@ Route::get('/adm/dashboard', function () {
 });
 
 Route::name('auth.')->prefix('auth')->group(function () {
-    Route::get('/admin', [AdminAuth::class, 'login'])->name('admin');
+    Route::get('/adm/dashboard', [AdminAuth::class, 'login'])->name('dashboard');
     Route::get('/dashboard', [UserAuth::class, 'login'])->name('dashboard');
 
     Route::name('login.')->prefix('login')->group(function () {
