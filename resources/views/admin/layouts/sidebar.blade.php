@@ -74,11 +74,11 @@
         -->
 
         <li
-            class="sidebar-item  ">
-            <a href="" class='sidebar-link'>
-                <i class="bi bi-x-octagon-fill"></i>
-                <span>Logout</span>
-            </a>
+            class="sidebar-item">
+            <form action="{{ route('auth.logout.admin') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-danger btn-lg btn-block">Logout</button>
+            </form>
         </li>
         
     </ul>
